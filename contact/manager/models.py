@@ -5,13 +5,13 @@ from django.db import models
 
 class ContactData(models.Model):
 	ref_number= models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    email= models.EmailField()
-    name= models.CharField(max_length=100)
-    subject= models.CharField(max_length=200)
-    message= models.TextField()
-    attended= models.BooleanField(default= False)
-    created_at= models.DateTimeField(auto_now_add= True)
-    updated_at= models.DateTimeField(auto_add= True)
-    access_record= models.TextField()
+	email= models.EmailField(blank= False)
+	name= models.CharField(max_length=100)
+	subject= models.CharField(max_length=200)
+	message= models.TextField(blank= False)
+	attended= models.BooleanField(default= False)
+	created_at= models.DateTimeField(auto_now_add= True)
+	updated_at= models.DateTimeField(auto_now= True)
+	access_record= models.TextField()
     
     

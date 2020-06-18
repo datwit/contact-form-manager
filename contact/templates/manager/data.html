@@ -1,0 +1,10 @@
+{% if element %}
+    <ul>
+    <li>{{ element.name }}</li>
+    <li>{{ element.email }}</li>
+    <li>{{ element.subject }}</li>
+    <li>{{ element.message }}</li>
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}

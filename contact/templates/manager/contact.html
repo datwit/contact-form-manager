@@ -1,6 +1,10 @@
-<h1>Contact</h1>
+<h1>Contact Us</h1>
+{% if contacted == False %}
 <form role="form" action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Submit</button>
-</form>
+</form>  
+{% else %}
+    <p>Your contact was succes, thank for your time, wait for email reply</p>
+{% endif %}

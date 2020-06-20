@@ -5,27 +5,38 @@ from .models import ContactData
 
 # Create your views here.
 
-
 def contact(request):
 	form= ContactForm(request.POST or None)
+	contact= False
 	if form.is_valid():
 		new_contact= form.save()
-		#create advise email with data
+		contact = True
 		con = get_connection('django.core.mail.backends.console.EmailBackend')
+		
+		content='Name: ' + new_contact.name + '\nEmail: '+ new_contact.email + '\nSubject: ' + new_contact.subject + '\nMessage: ' + new_contact.message 
+			
+		#create advise email to enterprise
 		send_mail(
 			'New user contact',
-			'Name: ' + new_contact.name + '\nEmail: '+ new_contact.email + 
-			'\nSubject: ' + new_contact.subject + '\nMessage: ' + new_contact.message + 
-			'\nLink to access: http://datwit.com/contact/data/' + str(new_contact.ref_number),
+			content + '\nLink to access: http://datwit.com/contact/data/' + str(new_contact.ref_hash),
 			'noreply@gmail.com',
 			['siteowner@example.com'],
 			connection=con,
 			)
-		return redirect('data/' + str(new_contact.ref_number))
-	context= {'form': form }
+			
+		#create advise email to user
+		send_mail(
+			'New user contact',
+			content,
+			'noreply@gmail.com',
+			['siteowner@example.com'],
+			connection=con,
+			)
+	
+	context= {'form': form , 'contacted': contact}
 	return render(request, 'manager/contact.html', context)
 
 def data(request, contactID):
-	element=ContactData.objects.get(ref_number= contactID)
+	element=ContactData.objects.get(ref_hash= contactID)
 	context={'element': element}
 	return render(request, 'manager/data.html', context)

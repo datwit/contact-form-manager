@@ -1,14 +1,14 @@
-from django.contrib.auth.models import User, Group
+import uuid
 from rest_framework import viewsets
 from django.core.mail import send_mail, get_connection
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
-from manageContact.models import ContactData
-from manageContact.serializers import ContactSerializer
+from manage_contact.models import contact_data
+from manage_contact.serializers import ContactSerializer, ContactAnswer
 
 @csrf_exempt
-def Contact_list(request):
+def create_contact(request):
     """
     List all code snippets, or create a new snippet.
     """
@@ -25,7 +25,7 @@ def Contact_list(request):
             #create advise email to enterprise
             send_mail(
                 'New user contact',
-                content + '\nLink to access: http://datwit.com/contact/data/' + str(new_contact.ref_hash),
+                content + '\nLink to access: http://localhost:8000/contact/data/' + str(new_contact.ref_hash),
                 'noreply@gmail.com',
                 ['siteowner@example.com'],
                 connection=con,
@@ -40,36 +40,46 @@ def Contact_list(request):
                 connection=con,
                 )
 
-            return JsonResponse(serializer.data, status=201)
+            return JsonResponse(serializer.data, status=200)
         return JsonResponse(serializer.errors, status=400)
 
 @csrf_exempt
-def contact_detail(request, contactID):
+def contact_detail(request, ref_hash):
     """
     Retrieve, update or delete a code snippet.
     """
-    if contactID == "all":
-        contact = ContactData.objects.all()
+    if ref_hash == "all":
+        contact = contact_data.objects.all()
         serializer = ContactSerializer(contact, many=True)
         return JsonResponse(serializer.data, safe=False)
     else:
         try:
-            contact = ContactData.objects.get(ref_hash= contactID)
+            contact = contact_data.objects.get(ref_hash = ref_hash)
         except contact.DoesNotExist:
             return HttpResponse(status=404)
 
-        if request.method == 'GET':
-            serializer = ContactSerializer(contact)
-            return JsonResponse(serializer.data)
+        if request.method == 'GET' and contact.active==True:
+            contacts=contact_data.objects.filter( email = contact.email)    
+            serializer = ContactSerializer(contacts, many=True)
+            return JsonResponse(serializer.data, safe=False)
 
         elif request.method == 'PUT':
             data = JSONParser().parse(request)
-            serializer = ContactSerializer(contact, data=data)
-            if serializer.is_valid():
-                serializer.save()
-                return JsonResponse(serializer.data)
-            return JsonResponse(serializer.errors, status=400)
+            serializer_answer = ContactAnswer(data=data)
+            serializer_answer.answer_to = contact.id
+            if serializer_answer.is_valid():
+                serializer_answer.save()
+                contact.ref_hash = uuid.uuid4()
+                contact.save()
+
+                return JsonResponse(serializer_answer.data)
+            return JsonResponse(serializer_answer.errors, status=400)
 
         elif request.method == 'DELETE':
-            contact.delete()
+            contact.active = False
+            contact.ref_hash = uuid.uuid4()
+            contact.save()
             return HttpResponse(status=204)
+
+        else:
+            return HttpResponse(status=404)

@@ -129,5 +129,6 @@ dmypy.json
 .pyre/
 
 
-# yarn & npm
+# js / yarn & npm
 jsclient/node_modules
+application/static/js/app.js

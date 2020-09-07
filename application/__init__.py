@@ -1,5 +1,7 @@
 from flask import Flask
+from flask_wtf.csrf import CSRFProtect
 
+csrf = CSRFProtect()
 
 def create_app(config):
     """Initialize the core application."""
@@ -7,6 +9,7 @@ def create_app(config):
     app.config.from_object('config.Config')
     
     # Initialize Plugins
+    csrf.init_app(app)
 
     with app.app_context():
         # Include our Routes

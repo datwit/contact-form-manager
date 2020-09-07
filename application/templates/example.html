@@ -12,11 +12,20 @@
 </head>
 <body>
 
-	<h1>Hello World</h1> 
-	
+	<h1 class="text-center">Hello World</h1> 
+
+	<hr>
+
+	<div id='contact-form-loader' 
+		data-controller="component" 
+		data-component-remote="{{ url_for('default.processForm', _external=True) }}"
+		data-component-ajax="true">
+	</div>
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 
 </body>
 </html>

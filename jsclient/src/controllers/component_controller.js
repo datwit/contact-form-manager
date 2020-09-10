@@ -74,7 +74,7 @@ export default class ComponentController extends Controller {
   }
 
   processHeaders(headers) {
-    // procesar headers de web2py despues de una llamada ajax
+    // procesar headers despues de una llamada ajax
     // var command = headers['web2py-component-command'];
     // var flash = headers['web2py-component-flash'];
     var flash = false; // buscar forma de hacerlo en flask
@@ -152,6 +152,12 @@ export default class ComponentController extends Controller {
 
   updateContent(html, target) {
     target.innerHTML = html;
+    // do things to the loaded html
+    // hidde hpot
+    var el = document.getElementById('ctcfields');
+    if (el) {
+      el.style.display = 'none';
+    }
   }
 
   loadRemote(url_to_load, target) {

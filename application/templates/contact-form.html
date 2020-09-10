@@ -1,7 +1,5 @@
 <form id="contact_form_id" method="post" action="">
     
-    {{ form.hidden_tag() }}
-
     <div class="col s12 m6 l7">
         <div class="input-field">
             <i class="material-icons prefix">account_circle</i>
@@ -28,7 +26,7 @@
                 data-length="1000" maxlength="1000" rows="5" required=""></textarea>
             <label class="active" for="messagejdjkdkd">Message</label>
             <span class="character-counter" style="float: right; font-size: 12px;"></span></div>
-        <div id="fields" class="input-field" style="display: none;">
+        <div id="ctcfields" class="input-field">
             <input type="text" name="name_field" id="name" value="">
             <input type="email" name="email_field" id="email" value="">
             <input type="text" name="subject_field" id="subject" value="">

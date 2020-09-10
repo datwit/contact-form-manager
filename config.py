@@ -6,7 +6,9 @@ load_dotenv()
 
 class Config(object):
     SECRET_KEY = os.getenv('SECRET_KEY') or 'you-will-never-guess'
-    WTF_CSRF_CHECK_DEFAULT = True
+    WTF_CSRF_CHECK_DEFAULT = False
+    WTF_CSRF_ENABLED = False
+    STAGE = 'local'
 
 class LocalConfig(Config):
     ENV = 'development'
@@ -25,6 +27,7 @@ class StagingConfig(Config):
     AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
     AWS_REGION = os.getenv('AWS_REGION')
     SECRET_KEY = os.getenv('SECRET_KEY')
+    STAGE = os.getenv('STAGE')
 
 class ProdConfig(StagingConfig):
     DEBUG = False

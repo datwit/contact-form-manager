@@ -12,5 +12,9 @@ jobs:
 
             - name: Build docker images
               run: |
+                docker-compose pull
                 docker-compose build
-                docker pull localstack/localstack
+
+            - name: Prepare data
+              run: |
+                docker-compose run contact-form ./wait-for-it.sh localstack:4569 -- flask dynamodb create

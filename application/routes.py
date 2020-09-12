@@ -73,6 +73,9 @@ def processForm():
 
         return redirect(url_for('default.contactDone'))
 
+    if form.errors:
+        return "You are fishy", 400
+    
     return render_template('contact-form.html', form=form)
 
 

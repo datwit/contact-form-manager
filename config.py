@@ -21,6 +21,7 @@ class LocalConfig(Config):
 
 class TestConfig(LocalConfig):
     TESTING = True
+    STAGE = 'testing'
 
 class StagingConfig(Config):
     ENV = 'production'

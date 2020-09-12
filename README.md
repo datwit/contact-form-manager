@@ -8,12 +8,11 @@ Install and config docker, them run:
 
 ```bash
 docker-compose build
-docker-compose run contact-form flask dynamodb
+docker-compose run contact-form ./wait-for-it.sh localstack:4569 -- flask dynamodb create
 docker-compose up
 ```
 
-The first 2 command's only the first time. This uses dynamodb-local from aws
-for local development. The tables data will be store in `/tmp`.
+The first 2 command's only the first time. This uses localstack docker image for local development. The tables data will be store in `/tmp`.
 
 Build the client script, need's at least node 10 installed:
 

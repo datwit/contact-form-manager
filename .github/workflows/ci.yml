@@ -3,6 +3,7 @@ name: CI/CD
 on: push
 
 jobs:
+  
     test:
         name: Test
         runs-on: ubuntu-latest
@@ -15,13 +16,7 @@ jobs:
                 docker-compose pull
                 docker-compose build
 
-            - name: Prepare data
-              run: |
-                docker-compose run contact-form ./wait-for-it.sh localstack:4569 -- flask dynamodb create
-
             - name: Run tests
               run: |
                 docker-compose run contact-form ./wait-for-it.sh localstack:4569 -- pytest --cov -x
-            
-            - name: Stopper
-              run: exit 1
+

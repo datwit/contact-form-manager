@@ -57,6 +57,8 @@ jobs:
             AWS_REGION: eu-west-1
             SECRET_KEY: ${{ secrets.SECRET_KEY }}
             DATWIT_RCPT: contact@datwit.com
+            FLASK_APP: application:create_app('config.StagingConfig')
+            STAGE: dev
           run: |
             source env/bin/activate
             flask dynamodb create

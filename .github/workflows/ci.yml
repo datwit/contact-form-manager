@@ -55,6 +55,7 @@ jobs:
             AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
             AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
             AWS_REGION: eu-west-1
+            AWS_DEFAULT_REGION: eu-west-1
             SECRET_KEY: ${{ secrets.SECRET_KEY }}
             DATWIT_RCPT: contact@datwit.com
             FLASK_APP: application:create_app('config.StagingConfig')

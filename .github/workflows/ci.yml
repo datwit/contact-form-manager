@@ -16,8 +16,5 @@ jobs:
                 docker-compose build
 
             - name: Prepare data
-              env:
-                FLASK_APP: application:create_app('config.LocalConfig')
-                FLASK_ENV: development
               run: |
                 docker-compose run contact-form ./wait-for-it.sh localstack:4569 -- flask dynamodb create

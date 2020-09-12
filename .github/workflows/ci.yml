@@ -28,16 +28,18 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v2
         
+        - name: Requirements
         - uses: actions/setup-python@v2
           with:
             python-version: '3.8'
-        
-        - name: Requirements
           run: |
             python3 -m venv env
             source env/bin/activate
             pip install -r requirements.txt
 
-        - name: checks
+        - name: Remove unwanted files
           run: |
-            find . git
+            find . | grep git
+        
+        - run: |
+            find . | grep pytest_cache

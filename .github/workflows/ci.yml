@@ -36,6 +36,5 @@ jobs:
             python3 -m venv env
             source env/bin/activate
             pip install -r requirements.txt
-            find . | grep git
-            find . | grep pytest_cache
+            find .
 

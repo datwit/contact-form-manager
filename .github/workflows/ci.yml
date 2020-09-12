@@ -18,6 +18,7 @@ jobs:
 
             - name: Run tests
               run: |
+                docker-compose run contact-form ./wait-for-it.sh localstack:4569 -- flask dynamodb create
                 docker-compose run contact-form ./wait-for-it.sh localstack:4569 -- pytest --cov -x
 
     deploy:
@@ -40,14 +41,26 @@ jobs:
         
         - name: Clean up
           run: |
-            rm -rf .git
-            rm -rf tests
-            rm -rf .github
-            rm -rf jsclient
-            rm docker-compose.yml Dockerfile run-local.py
             find . -name \*.pyc -delete
 
         - name: list files
           run: |
             find .
 
+        - name: Configure AWS Credentials
+          uses: aws-actions/configure-aws-credentials@v1
+          with:
+            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            aws-region: eu-west-1
+
+        - name: Deploy staging
+          env:
+            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            AWS_REGION: eu-west-1
+            SECRET_KEY: ${{ secrets.SECRET_KEY }}
+            DATWIT_RCPT: contact@datwit.com
+          run: |
+            flask dynamodb create
+            zappa update dev

@@ -10,5 +10,7 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v2
 
-            - name: Build containers
-              run: docker-compose build
+            - name: Build docker images
+              run: |
+                docker-compose build
+                docker pull localstack/localstack

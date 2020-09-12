@@ -38,6 +38,15 @@ jobs:
             source env/bin/activate
             pip install -r requirements.txt
         
+        - name: Clean up
+          run: |
+            rm -rf .git
+            rm -rf tests
+            rm -rf .github
+            rm -rf jsclient
+            rm docker-compose.yml Dockerfile run-local.py
+            find . -name \*.pyc -delete
+
         - name: list files
           run: |
             find .

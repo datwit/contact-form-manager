@@ -13,6 +13,9 @@ CORS(default, supports_credentials=True)
 
 @default.route('/example-form')
 def example():
+    if app.config['STAGE'] not in ['local', 'testing', 'dev']:
+        # only on dev or local, never in production
+        abort(404)
     return render_template('example.html')
 
 

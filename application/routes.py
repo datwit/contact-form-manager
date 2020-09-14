@@ -31,8 +31,6 @@ def processForm():
         finally:
             app.logger.debug(
                 "contact make with {}".format(ctc.name))
-            # TODO: 
-            # send a message to @datwit.com about the contact
             try:
                 client = boto3.client(
                     'ses', 

@@ -7,9 +7,9 @@ class Contact(Model):
         table_name = 'Contact.{}'.format(current_app.config['STAGE'])
         billing_mode = 'PAY_PER_REQUEST'
         host = current_app.config['DYNDB']
-        aws_access_key_id = current_app.config['AWS_ACCESS_KEY_ID']
-        aws_secret_access_key = current_app.config['AWS_SECRET_ACCESS_KEY']
-        region = current_app.config['AWS_REGION']
+        # aws_access_key_id = current_app.config['AWS_ACCESS_KEY_ID']
+        # aws_secret_access_key = current_app.config['AWS_SECRET_ACCESS_KEY']
+        # region = current_app.config['AWS_REGION']
 
     email = UnicodeAttribute(hash_key=True)
     name = UnicodeAttribute()

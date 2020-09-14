@@ -131,4 +131,3 @@ dmypy.json
 
 # js / yarn & npm
 jsclient/node_modules
-application/static/js/app.js

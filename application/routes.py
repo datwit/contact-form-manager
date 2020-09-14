@@ -58,8 +58,9 @@ def processForm():
                         },
                         'Subject': {
                             'Charset': 'UTF-8',
-                            'Data': 'Contact: {}'.format(
-                                form.subjectjdhf.data),
+                            'Data': '[{}] Contact: {}'.format(
+                                form.subjectjdhf.data,
+                                app.config['STAGE']),
                         }
                     },
                     Source='noreply@datwit.com'

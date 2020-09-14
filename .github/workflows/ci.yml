@@ -12,9 +12,7 @@ jobs:
               uses: actions/checkout@v2
 
             - name: List dirs
-              run: |
-                echo "Working dir"
-                ls -R
+              run: ls -R
 
             - name: Build docker images
               run: |

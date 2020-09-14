@@ -67,16 +67,23 @@ jobs:
           run: |
             find . -name \*.pyc -delete
 
+        - uses: actions/download-artifact@v2
+          with:
+            name: client-script
+
+        - name: List dirs
+          run: |
+            echo "Application js"
+            ls -la application/static/js
+            echo "Working dir"
+            ls -la
+
         - name: Configure AWS Credentials
           uses: aws-actions/configure-aws-credentials@v1
           with:
             aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
             aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
             aws-region: eu-west-1
-
-        - uses: actions/download-artifact@v2
-          with:
-            name: client-script
 
         - name: Deploy staging
           env:

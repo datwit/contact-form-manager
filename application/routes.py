@@ -5,6 +5,7 @@ from application.forms import ContactForm
 from application.models import Contact
 from botocore.exceptions import ClientError
 import boto3
+import os
 
 default = Blueprint('default', __name__)
 CORS(default, supports_credentials=True)
@@ -38,7 +39,8 @@ def processForm():
                     region_name=app.config['AWS_REGION'],
                     endpoint_url=app.config['SES_ENDPOINT'],
                     aws_access_key_id=app.config['AWS_ACCESS_KEY_ID'],
-                    aws_secret_access_key=app.config['AWS_SECRET_ACCESS_KEY'])
+                    aws_secret_access_key=app.config['AWS_SECRET_ACCESS_KEY'],
+                    aws_session_token=os.getenv('AWS_SESSION_TOKEN'))
                 response = client.send_email(
                     Destination={
                         'ToAddresses': [app.config['DATWIT_RCPT'],],

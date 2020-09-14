@@ -16,6 +16,13 @@ jobs:
                 docker-compose pull
                 docker-compose build
 
+            - name: Configure AWS Credentials
+              uses: aws-actions/configure-aws-credentials@v1
+              with:
+                aws-access-key-id: no-valid-credets
+                aws-secret-access-key: no-valis-secret
+                aws-region: eu-west-1
+
             - name: Run tests
               run: |
                 docker-compose run contact-form ./wait-for-it.sh localstack:4569 -- flask dynamodb create

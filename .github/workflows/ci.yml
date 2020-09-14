@@ -11,6 +11,11 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v2
 
+            - name: List dirs
+              run: |
+                echo "Working dir"
+                ls -R
+
             - name: Build docker images
               run: |
                 docker-compose pull
@@ -73,10 +78,8 @@ jobs:
 
         - name: List dirs
           run: |
-            echo "Application js"
-            ls -la application/static/js
             echo "Working dir"
-            ls -la
+            ls -R
 
         - name: Configure AWS Credentials
           uses: aws-actions/configure-aws-credentials@v1

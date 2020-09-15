@@ -9,7 +9,7 @@ def test_default_route(client):
 def test_contactDone(client):
     res = client.get('/contact-done')
     assert res.status_code == 200
-    assert 'Thanks for contacting us !!!' in res.data.decode('utf-8')
+    assert 'Thanks for your message' in res.data.decode('utf-8')
 
 def test_formLoaded(client):
     res = client.get('/process-contact-form')
@@ -51,5 +51,5 @@ def test_contact_make(client):
     rv = client.post(
         '/process-contact-form', data=data, follow_redirects=True)
     assert rv.status_code == 200
-    assert 'Thanks for contacting us !!!' in rv.data.decode('utf-8')
+    assert 'Thanks for your message' in rv.data.decode('utf-8')
     assert Contact.get('aaa@aol.com') is not None

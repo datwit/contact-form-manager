@@ -2,7 +2,7 @@ name: CI Testing
 
 on: 
   push:
-    ranches-ignore:
+    branches-ignore:
       - master
       - development
 

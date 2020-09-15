@@ -14,7 +14,7 @@ docker-compose up
 
 The first 2 command's only the first time. This uses localstack docker image for local development. The tables data will be store in `/tmp`.
 
-Build the client script, need's at least node 10 installed:
+Build the client script, needs at least node 10 installed:
 
 ```bash
 cd jsclient

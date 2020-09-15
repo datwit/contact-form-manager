@@ -7,7 +7,7 @@ def test_default_route(client):
 
 
 def test_contactDone(client):
-    res = client.get('/conact-done')
+    res = client.get('/contact-done')
     assert res.status_code == 200
     assert 'Thanks for contacting us !!!' in res.data.decode('utf-8')
 

@@ -83,7 +83,7 @@ def processForm():
     return render_template('contact-form.html', form=form)
 
 
-@default.route('/conact-done')
+@default.route('/contact-done')
 def contactDone():
     """Show sucess message"""
     return render_template("thanks-for-contact.html")

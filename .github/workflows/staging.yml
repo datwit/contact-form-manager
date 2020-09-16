@@ -21,8 +21,8 @@ jobs:
 
             - name: Run tests
               run: |
-                docker-compose run contact-form ./wait-for-it.sh localstack:4569 -t 0 -- flask dynamodb create
-                docker-compose run contact-form ./wait-for-it.sh localstack:4569 -t 0 -- pytest --cov -x
+                docker-compose run contact-form ./wait-for-it.sh localstack:4569 -t 120 -- flask dynamodb create
+                docker-compose run contact-form ./wait-for-it.sh localstack:4569 -t 120 -- pytest --cov -x
 
     build:
       name:  Build JS client

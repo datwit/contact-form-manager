@@ -8,7 +8,7 @@ Install and config docker, them run:
 
 ```bash
 docker-compose build
-docker-compose run contact-form ./wait-for-it.sh localstack:4569 -- flask dynamodb create
+docker-compose run contact-form ./wait-for-it.sh localstack:4569 -t 0 -- flask dynamodb create
 docker-compose up
 ```
 

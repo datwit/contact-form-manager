@@ -12,8 +12,8 @@ class Config(object):
 
 class LocalConfig(Config):
     ENV = 'development'
-    DYNDB = 'http://localstack:4569'
-    SES_ENDPOINT = "http://localstack:4579"
+    DYNDB = 'http://localstack:4566'
+    SES_ENDPOINT = "http://localstack:4566"
     AWS_ACCESS_KEY_ID = 'DUMMYIDEXAMPLE'
     AWS_SECRET_ACCESS_KEY = 'DUMMYIDEXAMPLE'
     AWS_REGION = 'eu-west-1'

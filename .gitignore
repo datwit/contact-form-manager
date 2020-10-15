@@ -131,3 +131,6 @@ dmypy.json
 
 # js / yarn & npm
 jsclient/node_modules
+
+# VSCode stuff
+*.code-workspace

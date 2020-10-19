@@ -1,0 +1,25 @@
+{
+    "dev": {
+        "app_function": "lambdahandler.app",
+        "aws_region": "eu-west-1",
+        "project_name": "contact-form",
+        "runtime": "python3.8",
+        "s3_bucket": "zappa-4gq1dxweu",
+        "exclude": [".git", "__pycache__", "jsclient", "*.pyc", "tests"],
+        "debug": true,
+        "log_level": "DEBUG",
+        "keep_warm": false,
+        "num_retained_versions": 1
+    },
+    "production": {
+        "app_function": "lambdahandler.app",
+        "aws_region": "eu-west-1",
+        "project_name": "contact-form",
+        "runtime": "python3.8",
+        "s3_bucket": "zappa-4gq1dxweu",
+        "exclude": [".git", "__pycache__", "jsclient", "*.pyc", "tests"],
+        "debug": false,
+        "log_level": "ERROR",
+        "num_retained_versions": 2
+    }
+}

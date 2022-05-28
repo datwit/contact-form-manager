@@ -1,1 +1,6 @@
 -e .
+pytest
+pytest-cov
+bump2version
+flake8
+requests

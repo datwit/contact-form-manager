@@ -15,31 +15,6 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v2
 
-            - name: Build docker images
-              run: |
-                docker-compose pull
-                docker-compose build
-
             - name: Run tests
               run: |
-                docker-compose run contact-form ./wait-for-it.sh localstack:4566 -t 120 -- flask dynamodb create
-                docker-compose run contact-form ./wait-for-it.sh localstack:4566 -t 120 -- pytest --cov -x
-
-    test-build:
-      name:  Build JS client
-      runs-on: ubuntu-latest
-      needs: test
-      steps:
-        - name: Checkout
-          uses: actions/checkout@v2
-        
-        - name: Setup node
-          uses: actions/setup-node@v1
-          with:
-            node-version: 10.x
-        
-        - name: Build scripts
-          run: |
-            cd jsclient
-            yarn install
-            yarn run prod
+                ls -la

@@ -1,6 +1,7 @@
 -e .
 pytest
 pytest-cov
+pytest-mock
 bump2version
 flake8
 requests

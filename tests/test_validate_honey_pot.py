@@ -2,11 +2,14 @@ from datwit_contact_form.contact_manager import ContactManager
 from datwit_contact_form.errors import HoneyPotException, MissingFormDataError
 import pytest
 
+
 class MockDDB:
     pass
 
+
 class MockSES:
     pass
+
 
 @pytest.mark.parametrize(
     "test_input, expected",
@@ -22,7 +25,7 @@ class MockSES:
             },
             dict(
                 name="Jhon Doe",
-                email="jdoe@example.com", 
+                email="jdoe@example.com",
                 message="some message"
             )
         ),
@@ -41,7 +44,7 @@ class MockSES:
                 message="some message"
             ),
             marks=pytest.mark.xfail(raises=HoneyPotException, strict=True)
-        ), 
+        ),
         pytest.param(
             {
                 'name': "",
@@ -58,7 +61,13 @@ class MockSES:
             ),
             marks=pytest.mark.xfail(raises=HoneyPotException, strict=True)
         ),
-        pytest.param(dict(), dict(), marks=pytest.mark.xfail(raises=MissingFormDataError, strict=True))]
+        pytest.param(
+            dict(),
+            dict(),
+            marks=pytest.mark.xfail(
+                raises=MissingFormDataError, strict=True)
+        )
+    ]
 )
 def test_validate(test_input, expected):
     mgt = ContactManager(MockDDB(), MockSES())

@@ -1,25 +1,17 @@
-# contact-form-manager
+# contact form backend package
 
-API for managing messages from Contact Form in Landing Page
+This is the package in charge of handling the data receive by the contact form 
+API.
 
-# local dev
+This repo produces a python package witch can be reuse as part of the infrastructure deployments.
 
-Install and config docker, them run:
+## local development
 
-```bash
-docker-compose build
-docker-compose run contact-form ./wait-for-it.sh localstack:4569 -t 0 -- flask dynamodb create
-docker-compose up
-```
-
-The first 2 command's only the first time. This uses localstack docker image for local development. The tables data will be store in `/tmp`.
-
-Build the client script, needs at least node 10 installed:
+You need python 3.8 and a virtual env:
 
 ```bash
-cd jsclient
-yarn install
-yarn run prod
+python3 -m venv .venv
+. .venv/bin/activate
+pip install -r requirements.txt
+make dev
 ```
-
-Open your browser on: http://127.0.0.1:5000/example-form

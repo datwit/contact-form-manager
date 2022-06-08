@@ -5,6 +5,11 @@ API.
 
 This repo produces a python package witch can be reuse as part of the infrastructure deployments.
 
+## dependencies
+
+- For storage we use a AWS DynamoDB table
+- For sending mails we use AWS Simple Email Service
+
 ## local development
 
 You need python 3.8 and a virtual env:

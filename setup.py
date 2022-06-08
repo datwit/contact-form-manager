@@ -9,7 +9,7 @@ def read(fname):
 
 setup(
     name='datwit_contact_form',
-    version='0.0.0',
+    version='0.0.1',
     url='https://github.com/datwit/contact-form-manager',
     license='GPL',
     author='Yoel Benítez Fonseca',

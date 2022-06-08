@@ -1,4 +1,4 @@
-import uuid
+import datetime
 from typing import Dict
 
 from mypy_boto3_dynamodb import Client as DDBClient
@@ -16,13 +16,18 @@ class ContactManager:
 
     def saveContact(self, postedData: Dict[str, str]) -> None:
         parseData = self.validateHoneyPot(postedData)
-        id = str(uuid.uuid4())
+        date = datetime.datetime.utcnow()
         stage = BaseConfig.STAGE
         self.ddb.put_item(
             BaseConfig.TABLE_NAME,
             Item={
-                'id': {
-                    'S': id
+                'pk': {
+                    # jdoe@example.com#Dev
+                    'S': "{}#{}".format(parseData['email'], stage)
+                },
+                'sk': {
+                    # MESSAGE#2022-06-08-01-47
+                    'S': "MESSAGE#{}".format(date.strftime("%Y-%m-%d-%H-%M"))
                 },
                 'email': {
                     'S': parseData['email']

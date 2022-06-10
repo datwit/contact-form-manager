@@ -19,9 +19,9 @@ class MockSES:
                 'name': "",
                 'email': "",
                 'message': "",
-                'name384jje': "Jhon Doe",
-                'email384jje': 'jdoe@example.com',
-                'message384jje': "some message"
+                '384jjename': "Jhon Doe",
+                '384jjeemail': 'jdoe@example.com',
+                '384jjemessage': "some message"
             },
             dict(
                 name="Jhon Doe",
@@ -34,9 +34,9 @@ class MockSES:
                 'name': "Jhon Doe",
                 'email': "",
                 'message': "",
-                'name384jje': "Jhon Doe",
-                'email384jje': 'jdoe@example.com',
-                'message384jje': "some message"
+                '384jjename': "Jhon Doe",
+                '384jjeemail': 'jdoe@example.com',
+                '384jjemessage': "some message"
             },
             dict(
                 name="Jhon Doe",
@@ -50,9 +50,9 @@ class MockSES:
                 'name': "",
                 'email': "jdoe@example.com",
                 'message': "",
-                'name384jje': "Jhon Doe",
-                'email384jje': 'jdoe@example.com',
-                'message384jje': "some message"
+                '384jjename': "Jhon Doe",
+                '384jjeemail': 'jdoe@example.com',
+                '384jjemessage': "some message"
             },
             dict(
                 name="Jhon Doe",

@@ -19,18 +19,18 @@ class MockSES:
             'name': "",
             'email': "",
             'message': "",
-            'name384jje': "Jhon Doe",
-            'email384jje': 'jdoe@example.com',
-            'message384jje': "some message"
+            '384jjename': "Jhon Doe",
+            '384jjeemail': 'jdoe@example.com',
+            '384jjemessage': "some message"
         }
     ]
 )
 def test_save_contact(test_input, mocker: MockerFixture):
     def _internalValidateHoneyPot(self, values):
         return dict(
-            name=values['name384jje'],
-            email=values['email384jje'],
-            message=values['message384jje']
+            name=values['384jjename'],
+            email=values['384jjeemail'],
+            message=values['384jjemessage']
         )
 
     def _fakeNotifyDatwit(*args, **kwargs):

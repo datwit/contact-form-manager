@@ -54,7 +54,7 @@ class ContactManager:
             for k in toLookFor:
                 if postedData[k] != '':
                     raise HoneyPotException
-                ret[k] = postedData["{}{}".format(k, suffix)]
+                ret[k] = postedData["{}{}".format(suffix, k)]
         except KeyError:
             raise MissingFormDataError
 

@@ -51,3 +51,9 @@ jobs:
           name: distribution-python
           path: dist/
           retention-days: 1
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          files: |
+            dist/*

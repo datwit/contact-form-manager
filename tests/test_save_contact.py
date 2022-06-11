@@ -1,10 +1,25 @@
+from typing import Any
+
+import pytest
 from datwit_contact_form.contact_manager import ContactManager
 from pytest_mock import MockerFixture
-import pytest
 
 
 class MockDDB:
-    def put_item(*args, **kwargs):
+    def put_item(
+        self,
+        *,
+        TableName: str,
+        Item: Any,
+        Expected: Any = {},
+        ReturnValues: Any = {},
+        ReturnConsumedCapacity: Any = {},
+        ReturnItemCollectionMetrics: Any = {},
+        ConditionalOperator: Any = {},
+        ConditionExpression: Any = {},
+        ExpressionAttributeNames: Any = {},
+        ExpressionAttributeValues: Any = {}
+    ):
         pass
 
 

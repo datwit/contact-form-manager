@@ -19,7 +19,7 @@ class ContactManager:
         date = datetime.datetime.utcnow()
         stage = BaseConfig.STAGE
         self.ddb.put_item(
-            BaseConfig.TABLE_NAME,
+            TableName=BaseConfig.TABLE_NAME,
             Item={
                 'pk': {
                     # jdoe@example.com#Dev

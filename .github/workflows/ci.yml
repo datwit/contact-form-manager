@@ -29,4 +29,4 @@ jobs:
           flake8 datwit_contact_form  tests --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
       - name: tests
         run: |
-          make test
+          make coverage

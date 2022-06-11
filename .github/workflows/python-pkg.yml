@@ -46,11 +46,6 @@ jobs:
       - name: Build package
         run: |
           make dist
-      - uses: actions/upload-artifact@v2
-        with:
-          name: distribution-python
-          path: dist/
-          retention-days: 1
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"

@@ -69,7 +69,7 @@ class ContactManager:
                 'Body': {
                     'Text': {
                         'Charset': 'UTF-8',
-                        'Data': 'Form {} <{}> to you: {}'.format(
+                        'Data': 'From {} <{}> to you: {}'.format(
                             name,
                             email,
                             message
